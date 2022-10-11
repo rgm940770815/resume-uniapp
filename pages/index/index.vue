@@ -1,10 +1,10 @@
 <template>
 	<view class="container">
-		<preview-image ref="previewImage" :imgs="imgList" :baseUrl="baseUrl" :saveBtn="false" :rotateBtn="circular"></preview-image>
+		<preview-image ref="previewImage" :imgs="imgList" :baseImgUrl="baseImgUrl" :saveBtn="false" :rotateBtn="circular"></preview-image>
 		<view class="top">
 			<view class="top_inner">
 				<view class="top_left">
-					<image :src="baseUrl+info.iconSrc" class="top_img" @click="imgPreview('icon')"></image>
+					<image :src="baseImgUrl+info.iconSrc" class="top_img" @click="imgPreview('icon')"></image>
 				</view>
 				<view class="top_right">
 					<view class="text1">
@@ -79,15 +79,15 @@
 			</view>
 			<view class="info_title">工作生活照</view>
 			<view class="img_info">
-				<image v-for="(item,index) in lifePhotoList" :key="index" :src="baseUrl+item" class="photo" mode="aspectFill" @click="imgPreview(lifePhotoList,index)"></image>
+				<image v-for="(item,index) in lifePhotoList" :key="index" :src="baseImgUrl+item" class="photo" mode="aspectFill" @click="imgPreview(lifePhotoList,index)"></image>
 			</view>
 			<view class="info_title">资格证照片</view>
 			<view class="img_info">
-				<image v-for="(item,index) in certificationPhotoList" :key="index" :src="baseUrl+item" class="photo" mode="aspectFill" @click="imgPreview(certificationPhotoList,index)"></image>
+				<image v-for="(item,index) in certificationPhotoList" :key="index" :src="baseImgUrl+item" class="photo" mode="aspectFill" @click="imgPreview(certificationPhotoList,index)"></image>
 			</view>
-			<view class="info_title">月子餐照片</view>
+			<view class="info_title">厨房技能</view>
 			<view class="img_info">
-				<image v-for="(item,index) in mealPhotoList" :key="index" :src="baseUrl+item" class="photo" mode="aspectFill" @click="imgPreview(mealPhotoList,index)"></image>
+				<image v-for="(item,index) in mealPhotoList" :key="index" :src="baseImgUrl+item" class="photo" mode="aspectFill" @click="imgPreview(mealPhotoList,index)"></image>
 			</view>
 			<view class="info_title">工作经历</view>
 			<view class="info_block">
@@ -108,7 +108,7 @@
 		components:{previewImage},
 		data() {
 			return {
-				baseUrl:config,
+				baseImgUrl:config.imgUrl,
 				//基本信息
 				info:data.info,
 				//生活照
@@ -141,9 +141,11 @@
 					this.imgList = imgList;
 					this.circular = true;
 				}
-				this.$refs.previewImage.open(index);
+				setTimeout(()=>{
+					this.$refs.previewImage.open(index);
+				},50)
 				// imgList.forEach((item,index)=>{
-				// 	imgList[index] = this.baseUrl+item;
+				// 	imgList[index] = this.baseImgUrl+item;
 				// })
 				// uni.previewImage({
 				// 	current:index,

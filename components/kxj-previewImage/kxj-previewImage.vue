@@ -23,7 +23,7 @@
 							:id="'image-'+i"
 							:key="'movable-view'+i"
 							class="image"
-							:src="baseUrl+img"
+							:src="baseImgUrl+img"
 							:style="{ transform: 'rotateZ(' + deg + 'deg)' }"
 							:data-index="i"
 							:data-src="img"
@@ -49,7 +49,7 @@
 export default {
 	name: 'ksj-previewImage', //插件名称
 	props: {
-		baseUrl:{
+		baseImgUrl:{
 			type:String,
 			required: true,
 		},
